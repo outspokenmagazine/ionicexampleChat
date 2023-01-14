@@ -29,6 +29,5 @@ npm-debug.log*
 /platforms
 /plugins
 /www
-src/environments/environment.ts
 /webphp/z_legacy/dashboard/insta/vendor
 /keys_certificates_firebase
