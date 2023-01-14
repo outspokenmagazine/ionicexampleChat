@@ -1,0 +1,126 @@
+<!--<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="primary">
+        Edit
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Chats
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary">
+        <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Chats</ion-title>
+    </ion-toolbar>
+    <ion-searchbar placeholder="Search"></ion-searchbar>
+    <ion-row class="header-row">
+      <ion-col size="6">
+        <ion-button fill="clear" color="primary" class="ion-text-start">
+          Broadcast Lists
+        </ion-button>
+      </ion-col>
+      <ion-col size="6" class="ion-text-end">
+        <ion-button fill="clear" color="primary">
+          New Group
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-header>
+
+
+  <ion-list>
+    <ion-item *ngFor="let chat of chats" button detail="false" routerLink="chat">
+      <ion-avatar slot="start">
+        <img [src]="chat.image">
+      </ion-avatar>
+      <ion-label><b>{{ chat.from }}</b>
+      <p>{{ chat.msg }}</p></ion-label>
+      <span class="time" slot="end">
+        {{ chat.date | customDate }}
+      </span>
+    </ion-item>
+  </ion-list>
+
+ 
+</ion-content>-->
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="navmenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Chats
+    </ion-title>
+    <ion-buttons slot="end">
+      <!--<ion-button  color="light" (click)=openBuddies()>-->
+        <ion-button  color="light">
+        <fa-icon color="light" [icon]="['far','paper-plane']"></fa-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--<ion-refresher *ngIf="chats" id="inboxrefresher"  slot="fixed" (ionRefresh)="getNewChats($event)">
+      <ion-refresher-content
+          refreshingSpinner="circles"
+          refreshingText="Aktualisieren...">
+      </ion-refresher-content>
+  </ion-refresher>-->
+
+  <ion-list *ngIf="chats.length != 0">
+    <ion-item-sliding [id]="'slidingItem' + i" *ngFor="let chat of chats; let i = index" >
+      <ion-item-options side="start">
+        <!--<ion-item-option color="success" (click)="setChatUnread(chat, i)">-->
+          <ion-item-option color="success">
+            <i class="delete">Ungelesen</i>
+            <fa-icon slot="top" [icon]="['fas','bell']"></fa-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item tappable lines=inset routerLink="chat">
+        <ion-avatar slot="start">
+            <img [src]="chat.image"/>
+        </ion-avatar>
+        <ion-label>
+            <p>
+                <strong color=black>{{chat.from}}</strong>
+                <small class="timestamp">{{chat.date | customDate}}</small>
+            </p>
+            <!--<p class="my-last-message" *ngIf="chat.last_message_user_id == this.auth.token.user_id">Du:</p>-->
+            <!--<p class="my-last-message">Du:</p>-->
+            <p class="preview">{{chat.msg}}</p>
+        </ion-label>
+        <ion-note  slot="end" color="primary" *ngIf="i===0">
+            <ion-badge  color="danger"> 2</ion-badge>
+        </ion-note>
+    </ion-item>
+    
+    <ion-item-options side="end">
+        <ion-item-option color="primary">
+            <i class="delete">Löschen</i>
+            <fa-icon slot="top" [icon]="['fas','trash-alt']"></fa-icon>
+        </ion-item-option>
+    </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+
+
+  <!--<ion-infinite-scroll [hidden]=scrollhidden threshold="10px" (ionInfinite)="scrollChats($event)">
+      <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="wird geladen...">
+      </ion-infinite-scroll-content>
+  </ion-infinite-scroll>-->
+
+</ion-content>

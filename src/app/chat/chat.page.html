@@ -1,0 +1,223 @@
+<!--<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text="" color="primary"></ion-back-button>
+    </ion-buttons>
+    <div class="header-info">
+      <ion-avatar>
+        <img [src]="info.image">
+      </ion-avatar>
+      {{ info.from }}
+    </div>
+    <ion-buttons slot="end">
+      <ion-button color="primary">
+        <ion-icon slot="icon-only" name="videocam-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="primary">
+        <ion-icon slot="icon-only" name="call-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" scrollEvents="true" (ionScroll)="contentScrolled($event)">
+  <ion-row *ngFor="let message of info.msgs">
+
+    <ion-col size="10" *ngIf="message.from !== currentUserId" class="message other-message">
+      <span>{{ message.msg }}
+      </span>
+
+      <div class="time ion-text-right"><br>{{ message.date | date:'shortTime' }}</div>
+    </ion-col>
+
+    <ion-col offset="2" size="10" *ngIf="message.from === currentUserId" class="message my-message">
+      <span>{{ message.msg }}
+      </span>
+      <div class="time ion-text-right"><br>{{ message.date | date:'shortTime' }}</div>
+    </ion-col>
+
+  </ion-row>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="scrollPercentage < 0.7 && scrollPercentage > 0">
+    <ion-fab-button (click)="scrollDown()">
+      <ion-icon name="chevron-down-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-row class="ion-align-items-center ion-no-padding">
+      <ion-col size="1" class="ion-no-padding ion-text-center">
+          <ion-icon name="add-outline" color="primary" size="large"></ion-icon>
+      </ion-col>
+      <ion-col size="8">
+        <ion-textarea class="message-input" autoGrow="true" rows="1"></ion-textarea>
+      </ion-col>
+      <ion-col size="3" class="ion-text-center">
+          <ion-icon name="camera-outline" color="primary" size="large" class="ion-margin-end"></ion-icon>
+          <ion-icon name="mic-outline" color="primary" size="large"></ion-icon>
+      </ion-col>
+
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>-->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="light" (click)="goBack()" ><ion-icon name="arrow-back"></ion-icon></ion-button>
+      <!--<ion-button color="light"  (click)="dismiss()"><ion-icon name="arrow-back"></ion-icon></ion-button>-->
+  </ion-buttons>
+      <ion-item tappable class="ion-no-padding" lines="none">
+          <ion-avatar  slot="start">
+              <img [src]="info.image">
+          </ion-avatar>
+          <ion-label >
+            <h3>{{info.from}}</h3>
+          </ion-label>
+      </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content #chatContent>
+
+<div class="contentdiv">
+   <ion-list id="chatContent" name="chatContent" >
+
+    <ion-item-sliding *ngFor="let message of info.msgs; let i = index" >
+      
+      <!--<ion-item-options side="start">
+        <ion-item-option color="success" (click)="replyTo(message, i)">
+            <ion-icon name="arrow-undo-circle" size="large"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>-->
+
+
+
+    <ion-item lines=none  class="item-right" *ngIf="message.from=== currentUserId">
+      <div class="full">
+        <div class="chat chatright">
+             <!--<ion-item lines=none class="chat-reply-container-right" >
+                <ion-list class="chat-reply-right">
+                   <div *ngIf="message.from == message.reply_to" class="chat-reply-to-name-right">Du</div>
+                    <div *ngIf="message.user_id != message.reply_to" class="chat-reply-to-name-right">{{chatPartner?.username}}</div>
+                    <div *ngIf="message.reply_type==='text'" class="chat-reply-message-right">{{message.reply_message}}</div>
+                    <img *ngIf="message.reply_type==='image'" class="reply-image" [src]="message.reply_message"/>             </ion-list>
+            </ion-item> -->  
+                <p class="notblack"  innerText="{{ message.msg }}"></p>
+
+          <div class="full time timeright" *ngIf="message.from === currentUserId">
+            <small class="timealignright"> {{message.date | date:'shortTime' }}</small>
+     <!--<ion-icon *ngIf="message.is_new" color="medium" name="checkmark" class="iconleft"></ion-icon>-->
+            
+            <ion-icon  color="success" name="checkmark" class="iconleft"></ion-icon>
+            <ion-icon  color="success" name="checkmark" class="iconleft"></ion-icon>
+            
+          </div>
+        </div>
+        <div class="liked-right">
+          <fa-icon  id="heart_xxx" [icon]="['fas','heart']" slot="icon-only"></fa-icon>
+        </div>
+
+      </div>
+
+
+
+    </ion-item>
+
+
+    <ion-item lines=none class="item-left" *ngIf="message.from === currentUserId">
+
+        <div class="full">
+
+            <div>
+
+                <div class="chat chatleft">
+                    <!--<ion-item lines=none class="chat-reply-container-left" *ngIf="message.reply_action">
+                        <ion-list class="chat-reply-left">
+                            <div *ngIf="message.user_id == message.reply_to" class="chat-reply-to-name-left">Du</div>
+                            <div *ngIf="message.user_id != message.reply_to" class="chat-reply-to-name-left">{{chatPartner?.username}}</div>                            <div lines=none class="chat-reply-to-name-left">{{replyToName}}</div>
+                            <div *ngIf="message.reply_type==='text'" class="chat-reply-message-left">{{message.reply_message}}</div>
+                            <img *ngIf="message.reply_type==='image'" class="reply-image" [src]="message.reply_message"/>
+                        </ion-list>
+                    </ion-item>-->
+                      <p innerText="{{ message.msg }}"></p>
+                       <div class="full time timeleft" *ngIf="message.from === currentUserId">
+                      <small>{{message.date | date:'shortTime'}}</small>
+                    </div>
+                </div>
+
+                <div class="liked-left">
+                    <fa-icon button [icon]="['fas','heart']" slot="icon-only"></fa-icon>
+                        </div>
+
+            </div>
+
+
+
+        </div>
+
+    </ion-item>
+
+    <ion-item-options side="start">
+        <ion-item-option color="success">
+            <ion-icon slot="top" name="arrow-undo-outline" size="large"></ion-icon>
+        </ion-item-option>
+    </ion-item-options>
+
+    <ion-item-options side="end">
+        <ion-item-option color="primary" >
+            <fa-icon slot="top" [icon]="['far','trash-alt']" ></fa-icon>
+        </ion-item-option>
+    </ion-item-options>
+
+    </ion-item-sliding>
+
+
+  </ion-list>
+</div>
+ 
+
+
+
+
+
+</ion-content>
+
+
+
+
+
+<ion-footer>
+
+
+
+        <ion-toolbar color="dark">
+            <!--<ion-textarea  autocapitalize="true" #chattextarea autogrow rows="1" placeholder="Schreibe eine Nachricht" (keyup)="handleKeyUp($event)"   (ionInput)="listen2input()"></ion-textarea>-->
+            <ion-textarea  autocapitalize="true" #chattextarea autogrow rows="1" placeholder="Schreibe eine Nachricht"   ></ion-textarea>
+
+            <ion-button color="dark" clear slot="end" type="submit" >
+                <fa-icon [icon]="['far','paper-plane']" color="white"></fa-icon>
+            </ion-button>
+            <ion-button color="dark" clear slot="end">
+                <fa-icon [icon]="['fas','camera']" id="add_icon"></fa-icon>
+            </ion-button>
+            <!--<ion-button *ngIf="!recording && !textEntered && this.platform.is('hybrid')" color="dark" clear slot="end"  (click)="startAudioRecord()">
+                <fa-icon [icon]="['fas','microphone']" id="record_icon"></fa-icon>
+            </ion-button>-->
+
+            <!-- HQ Audio start-->
+              <ion-button color="dark" clear slot="end" >
+                <fa-icon [icon]="['fas','microphone']" id="record_icon"></fa-icon>
+              </ion-button>
+            <!-- HQ Audio stop-->
+
+        </ion-toolbar>
+
+</ion-footer>

@@ -1,0 +1,7 @@
+{
+  "name": "chatUi",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

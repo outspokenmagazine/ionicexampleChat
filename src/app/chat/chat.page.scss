@@ -1,0 +1,304 @@
+ion-content {
+  --background: #F7F7F7;
+}
+
+ion-footer {
+  background-color: var(--ion-color-dark);
+}
+
+.centerrow {
+  align-items: center;
+}
+
+.chat {
+  display: inline-block;
+  font-size: 0.9em;
+  min-width: 90%;
+  max-width:90%;
+  padding: 7px 7px;
+  margin: 0px;
+  margin-top:10px;
+  border-radius: 10px;
+  padding-bottom:0px;
+}
+
+.item-left{
+  --padding-end:0px;
+  --padding-start:5px;
+}
+
+.item-right{
+  --padding-start:5px;
+
+}
+
+.contentdiv {
+  padding-bottom:10px;
+}
+
+.chat > p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+
+.liked-right {
+  float: right;
+  margin-right: 5px;
+  margin-top: 15px;
+  color: #760000;
+}
+
+.liked-left {
+  float: left;
+  margin-left: 5px;
+  margin-top: 15px;
+  color: #760000;
+}
+
+.reply-input-container {
+  margin: 5px 5px 5px 5px;
+  --background: var(--ion-color-dark-tint);
+  border-left: 4px solid #6a9aff;
+  border-radius: 10px;
+}
+
+.reply-input {
+  background: #383a3e;
+}
+
+.reply-to-name {
+  color: #6a9aff;
+  font-size: 90%;
+  padding: 6px 6px 3px 0px;
+  background: #383a3e;
+}
+
+.reply-message {
+  color: white;
+  font-size: 90%;
+  padding: 3px 6px 3px 0px;
+  margin-bottom: 6px;
+  background: #383a3e;
+  max-height: 2.5em;
+  line-height: 1.1em;
+  overflow: hidden;
+}
+
+.reply-image {
+  height: 25%;
+  width: 25%;
+}
+
+.chat-reply-container-right {
+  margin: 1px 0px 1px 0px;
+  --background: #c8c7cc;
+  border-left: 4px solid #1d4dc4;
+  border-radius: 10px;
+}
+
+.chat-reply-right {
+  background: #c8c7cc;
+}
+
+.chat-reply-to-name-right {
+  color: #1d4dc4;
+  font-size: 80%;
+  padding: 6px 6px 3px 0px;
+  background: #c8c7cc;
+}
+
+.chat-reply-message-right {
+  color: white;
+  font-size: 80%;
+  padding: 3px 6px 3px 0px;
+  margin-bottom: 6px;
+  background: #c8c7cc;
+  max-height: 2.325em;
+  line-height: 1.1em;
+  overflow: hidden;
+}
+
+.chat-reply-container-left {
+  margin: 1px 0px 1px 0px;
+  --background: #e4e3e3;
+  border-left: 4px solid #3767de;
+  border-radius: 10px;
+}
+
+.chat-reply-left {
+  background: #e4e3e3;
+}
+
+.chat-reply-to-name-left {
+  color: #3767de;
+  font-size: 80%;
+  padding: 6px 6px 3px 0px;
+  background: #e4e3e3;
+}
+
+.chat-reply-message-left {
+  color: black;
+  font-size: 80%;
+  padding: 3px 6px 3px 0px;
+  margin-bottom: 6px;
+  background: #e4e3e3;
+  max-height: 2.325em;
+  line-height: 1.1em;
+  overflow: hidden;
+}
+
+.close-reply-icon {
+  color: white;
+  margin-right: 0px;
+}
+
+.chatright {
+  float: right;
+  background-color: #f1f0f0;
+  color: black;
+  // margin-right:8px;
+}
+
+.chatleft {
+  float: left;
+  background-color: #aaaaaa;
+  color: white;
+  margin-left:5px;
+}
+
+
+@keyframes blink {  
+  0% { color: red; }
+  100% { color: white; }
+}
+
+@-webkit-keyframes blink {
+  0% { color: red; }
+  100% { color: white; }
+}
+
+.blink {
+  -webkit-animation: blink 1s linear infinite;
+  -moz-animation: blink 1s linear infinite;
+  animation: blink 1s linear infinite;
+  margin: 12px 5px;
+
+} 
+
+.full{
+  min-width:100%;
+}
+
+.time{
+  display: inline-block;
+  width: 100%;
+  clear: both;
+  // margin-bottom: 5px;
+}
+
+.iten-left{
+  --inner-padding-start: 0px;
+}
+
+.timeright {
+  text-align: right;
+  // padding-right:10px;
+}
+
+.timealignright{
+  bottom: 4px;
+  right: 35px;
+  position: absolute;
+  color:#92949c;
+}
+
+.notblack{
+  color:#444444;
+}
+
+.timeleft {
+  text-align: left;
+  padding-left:8px;
+}
+
+.iconleft {
+  margin-left: -5px;
+  font-size:70%;
+}
+
+small {
+  font-size: 50%;
+  vertical-align: top;
+  font-weight: bold;
+  color: #eeeeee;
+  float:right;
+}
+
+.heartleft {
+  float:left;
+  color: #760000;
+  padding-bottom: 15px;
+}
+
+.heartright {
+  float:right;
+  color: #760000;
+  padding-bottom: 15px;
+}
+
+ion-textarea{
+  --background:#ffffff;
+  padding-left: 5px!important;
+  padding-left: 5px!important;
+  margin: 5px!important;
+  color: black!important;
+  border-radius: 3px;
+  max-height: 100px!important;
+}
+
+::deep textarea {
+  max-height:100px;
+}
+
+.hidden{
+  display: none;
+}
+
+ion-header > ion-toolbar > ion-item{
+  --background:#760000;
+  ion-label{
+      padding:0px;
+      margin:0px;
+  }
+  ion-label > h3{
+      color: white;
+      font-weight:bold;
+  }
+  ion-label > p{
+      color: #eeeeee;
+  }
+}
+
+.notif{
+  padding:20px;
+}
+
+#add_icon {
+  color: white;
+  //margin: 12px 5px;
+}
+
+h6 {
+  padding-top: 40%;
+  text-align: center;
+  color: #c0c5ce;
+}
+
+
+ion-item-option {
+  margin: 5px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  border-radius: 5px;
+}
